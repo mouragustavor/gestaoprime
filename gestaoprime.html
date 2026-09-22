@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gestão Prime — Gestão de Condomínios em Miranda do Corvo</title>
+<meta name="description" content="Gestão Prime: administração de condomínios em Miranda do Corvo e freguesias vizinhas. Contacto direto e pessoal com Francis Wachholz, por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2EEE6;
+    --bg-alt: #E9E1D2;
+    --surface: #FFFFFF;
+    --ink: #232F29;
+    --ink-soft: #57645C;
+    --primary: #1F4B4C;
+    --primary-ink: #F2EEE6;
+    --accent: #B8763A;
+    --forest: #4B6355;
+    --whatsapp: #23984A;
+    --line: rgba(35, 47, 41, 0.16);
+    --line-soft: rgba(35, 47, 41, 0.09);
+    --shadow: none;
+    --radius: 6px;
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16201B;
+      --bg-alt: #1C2822;
+      --surface: #1F2C25;
+      --ink: #ECE7DA;
+      --ink-soft: #B7C0B7;
+      --primary: #7FADA9;
+      --primary-ink: #12201C;
+      --accent: #DDA268;
+      --forest: #8FB09C;
+      --whatsapp: #3CBE68;
+      --line: rgba(236, 231, 218, 0.16);
+      --line-soft: rgba(236, 231, 218, 0.08);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16201B;
+    --bg-alt: #1C2822;
+    --surface: #1F2C25;
+    --ink: #ECE7DA;
+    --ink-soft: #B7C0B7;
+    --primary: #7FADA9;
+    --primary-ink: #12201C;
+    --accent: #DDA268;
+    --forest: #8FB09C;
+    --whatsapp: #3CBE68;
+    --line: rgba(236, 231, 218, 0.16);
+    --line-soft: rgba(236, 231, 218, 0.08);
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(84px + env(safe-area-inset-top, 0px));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; color: var(--ink); }
+  p { margin: 0; }
+  a { color: inherit; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  section { padding: 88px 24px; }
+  @media (max-width: 720px) { section { padding: 64px 20px; } }
+
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .measure { max-width: 62ch; }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* ---------- Header ---------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand { display: flex; flex-direction: column; line-height: 1.1; text-decoration: none; }
+  .brand .name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--ink); }
+  .brand .tag { font-size: 0.78rem; color: var(--ink-soft); margin-top: 2px; }
+
+  nav.primary-nav { display: flex; gap: 32px; }
+  nav.primary-nav a {
+    text-decoration: none;
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  nav.primary-nav a:hover, nav.primary-nav a:focus-visible { color: var(--ink); border-color: var(--accent); }
+
+  .header-actions { display: flex; align-items: center; gap: 14px; }
+  .phone-inline { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+  .phone-inline svg { flex-shrink: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.96rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-whatsapp { background: var(--whatsapp); color: #FFFFFF; }
+  .btn-whatsapp:hover, .btn-whatsapp:focus-visible { background: color-mix(in srgb, var(--whatsapp) 85%, black); }
+  .btn-outline { background: transparent; border-color: var(--line); color: var(--ink); }
+  .btn-outline:hover, .btn-outline:focus-visible { border-color: var(--ink); }
+  .btn-large { padding: 16px 28px; font-size: 1.05rem; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 9px 10px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 880px) {
+    nav.primary-nav { display: none; }
+    .phone-inline { display: none; }
+    .nav-toggle { display: inline-flex; }
+  }
+
+  #mobile-menu {
+    display: none;
+    border-top: 1px solid var(--line-soft);
+    padding: 18px 24px 22px;
+  }
+  #mobile-menu.open { display: block; }
+  #mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  #mobile-menu .mobile-cta { margin-top: 16px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 64px; padding-bottom: 40px; overflow: hidden; }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .hero-art { order: -1; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.3rem, 4.6vw + 1rem, 3.85rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+  }
+  .hero .lead {
+    margin-top: 22px;
+    font-size: 1.14rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+  .hero .cta-row {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+  .hero .microcopy {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  .hero-art { position: relative; }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+  .hero-art-caption {
+    position: absolute;
+    left: 6%;
+    bottom: 8%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    max-width: 240px;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 900px) { .hero-art-caption { position: static; margin-top: 16px; max-width: none; } }
+  .hero-art-caption strong { color: var(--ink); display: block; margin-bottom: 3px; font-family: var(--font-display); font-weight: 600; }
+
+  /* ---------- Intro / trust ---------- */
+  .intro { background: var(--bg-alt); }
+  .intro .wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; }
+  @media (max-width: 800px) { .intro .wrap { grid-template-columns: 1fr; gap: 24px; } }
+  .intro h2 { font-size: clamp(1.6rem, 2vw + 1rem, 2.15rem); line-height: 1.18; }
+  .intro p { color: var(--ink-soft); font-size: 1.02rem; }
+  .intro p + p { margin-top: 16px; }
+  .intro .signature { margin-top: 22px; font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+  .intro .signature span { display: block; font-family: var(--font-body); font-size: 0.85rem; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ---------- Services ---------- */
+  .section-head { margin-bottom: 44px; max-width: 60ch; }
+  .section-head h2 { font-size: clamp(1.7rem, 2.2vw + 1rem, 2.35rem); }
+  .section-head p { margin-top: 12px; color: var(--ink-soft); font-size: 1.05rem; }
+
+  .service-list { border-top: 1px solid var(--line); }
+  .service-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .service-item .icon {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--forest);
+  }
+  .service-item h3 { font-size: 1.14rem; margin-bottom: 6px; }
+  .service-item p { color: var(--ink-soft); font-size: 0.98rem; max-width: 52ch; }
+
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  @media (max-width: 760px) { .services-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Process ---------- */
+  .process { background: var(--bg-alt); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 12px;
+    position: relative;
+  }
+  @media (max-width: 820px) { .process-steps { grid-template-columns: 1fr; gap: 36px; } }
+  .process-steps::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: var(--line);
+  }
+  @media (max-width: 820px) { .process-steps::before { display: none; } }
+  .step { position: relative; padding-right: 32px; }
+  .step .num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--accent);
+    background: var(--bg-alt);
+    display: inline-block;
+    padding-right: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .step h3 { margin-top: 16px; font-size: 1.15rem; }
+  .step p { margin-top: 8px; color: var(--ink-soft); font-size: 0.98rem; max-width: 34ch; }
+
+  /* ---------- Area ---------- */
+  .area .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  @media (max-width: 820px) { .area .wrap { grid-template-columns: 1fr; gap: 32px; } }
+  .area-list { border-top: 1px solid var(--line); margin-top: 20px; }
+  .area-list li {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.02rem;
+  }
+  .area-list li svg { flex-shrink: 0; color: var(--accent); }
+  .area-note { margin-top: 20px; color: var(--ink-soft); font-size: 0.96rem; }
+
+  /* ---------- Final CTA ---------- */
+  .cta-final {
+    background: var(--primary);
+    color: var(--primary-ink);
+  }
+  .cta-final .wrap { text-align: left; max-width: 780px; }
+  .cta-final h2 {
+    color: var(--primary-ink);
+    font-size: clamp(1.9rem, 3.2vw + 1rem, 2.9rem);
+    line-height: 1.12;
+  }
+  .cta-final p {
+    margin-top: 18px;
+    color: color-mix(in srgb, var(--primary-ink) 82%, transparent);
+    font-size: 1.08rem;
+    max-width: 52ch;
+  }
+  .cta-final .cta-row { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .cta-final .phone-inline { color: color-mix(in srgb, var(--primary-ink) 85%, transparent); }
+  .cta-final .btn-outline { border-color: color-mix(in srgb, var(--primary-ink) 40%, transparent); color: var(--primary-ink); }
+  .cta-final .btn-outline:hover { border-color: var(--primary-ink); }
+
+  /* ---------- Footer ---------- */
+  footer.site {
+    padding: 48px 24px 40px;
+    border-top: 1px solid var(--line-soft);
+  }
+  footer.site .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  footer.site .brand-block .name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+  footer.site .brand-block .tag { color: var(--ink-soft); font-size: 0.88rem; margin-top: 4px; }
+  footer.site .col { font-size: 0.92rem; color: var(--ink-soft); display: flex; flex-direction: column; gap: 6px; }
+  footer.site .col a { text-decoration: none; color: var(--ink-soft); }
+  footer.site .col a:hover { color: var(--ink); }
+  footer.site .legal { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line-soft); font-size: 0.82rem; color: var(--ink-soft); }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .float-whatsapp {
+    position: fixed;
+    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    z-index: 50;
+    background: var(--whatsapp);
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    transition: transform 0.15s ease;
+  }
+  .float-whatsapp:hover { transform: scale(1.06); }
+  .float-whatsapp:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <a class="brand" href="#topo">
+      <span class="name">Gestão Prime</span>
+      <span class="tag">Gestão de Condomínios</span>
+    </a>
+    <nav class="primary-nav" aria-label="Navegação principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#area">Área</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="header-actions">
+      <a class="phone-inline" href="tel:+351915533470">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11 21 3 13 3 4.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.3z"/></svg>
+        915 533 470
+      </a>
+      <a class="btn btn-whatsapp" href="https://wa.me/351915533470?text=Ol%C3%A1%20Francis%2C%20vi%20o%20site%20da%20Gest%C3%A3o%20Prime%20e%20gostava%20de%20saber%20mais%20sobre%20a%20gest%C3%A3o%20do%20meu%20condom%C3%ADnio." target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.4 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.4 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2zm4.6-6.3c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#servicos">Serviços</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#area">Área</a>
+    <a href="#contacto">Contacto</a>
+    <a href="tel:+351915533470">915 533 470</a>
+    <a class="btn btn-whatsapp mobile-cta" href="https://wa.me/351915533470?text=Ol%C3%A1%20Francis%2C%20vi%20o%20site%20da%20Gest%C3%A3o%20Prime%20e%20gostava%20de%20saber%20mais%20sobre%20a%20gest%C3%A3o%20do%20meu%20condom%C3%ADnio." target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="topo">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1>O seu condomínio, tratado como se fosse nosso.</h1>
+        <p class="lead">A Gestão Prime trata da administração, das contas e da manutenção do seu condomínio em Miranda do Corvo e arredores — com uma pessoa de contacto direto, não uma central de atendimento.</p>
+        <div class="cta-row">
+          <a class="btn btn-whatsapp btn-large" href="https://wa.me/351915533470?text=Ol%C3%A1%20Francis%2C%20vi%20o%20site%20da%20Gest%C3%A3o%20Prime%20e%20gostava%20de%20saber%20mais%20sobre%20a%20gest%C3%A3o%20do%20meu%20condom%C3%ADnio." target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.4 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.4 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2zm4.6-6.3c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a class="phone-inline" href="tel:+351915533470" style="font-size:1rem;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11 21 3 13 3 4.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.3z"/></svg>
+            915 533 470
+          </a>
+        </div>
+        <p class="microcopy">Resposta pessoal, sem compromisso. Não há formulários para preencher — é uma conversa direta.</p>
+      </div>
+
+      <div class="hero-art">
+        <svg viewBox="0 0 560 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de camadas de pedra de xisto, sobrepostas como um telhado tradicional da região.">
+          <rect x="30" y="60" width="500" height="46" rx="3" fill="var(--forest)" opacity="0.18"/>
+          <rect x="60" y="118" width="460" height="46" rx="3" fill="var(--accent)" opacity="0.22"/>
+          <rect x="20" y="176" width="500" height="46" rx="3" fill="var(--primary)" opacity="0.16"/>
+          <rect x="70" y="234" width="440" height="46" rx="3" fill="var(--forest)" opacity="0.24"/>
+          <rect x="35" y="292" width="500" height="46" rx="3" fill="var(--accent)" opacity="0.3"/>
+          <rect x="55" y="350" width="460" height="46" rx="3" fill="var(--primary)" opacity="0.22"/>
+          <rect x="15" y="408" width="500" height="46" rx="3" fill="var(--forest)" opacity="0.3"/>
+          <g stroke="var(--ink)" stroke-opacity="0.5" stroke-width="1.4" fill="none">
+            <line x1="30" y1="83" x2="530" y2="83"/>
+            <line x1="60" y1="141" x2="520" y2="141"/>
+            <line x1="20" y1="199" x2="520" y2="199"/>
+            <line x1="70" y1="257" x2="510" y2="257"/>
+            <line x1="35" y1="315" x2="535" y2="315"/>
+            <line x1="55" y1="373" x2="515" y2="373"/>
+            <line x1="15" y1="431" x2="515" y2="431"/>
+          </g>
+          <circle cx="470" cy="70" r="5" fill="var(--accent)"/>
+          <circle cx="90" cy="420" r="5" fill="var(--forest)"/>
+        </svg>
+        <div class="hero-art-caption">
+          <strong>Miranda do Corvo</strong>
+          A servir condomínios no concelho e nas localidades vizinhas.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro" id="sobre">
+    <div class="wrap">
+      <div>
+        <h2>Uma pessoa. Não uma central de atendimento.</h2>
+      </div>
+      <div>
+        <p>Muitos condomínios da região são geridos à distância, por empresas grandes onde cada contacto é uma linha de apoio diferente e cada pedido demora semanas a ter resposta.</p>
+        <p>A Gestão Prime nasceu para ser o contrário disso: Francis Wachholz conhece cada prédio que gere, fala diretamente com os condóminos e resolve os assuntos sem intermediários. As contas ficam claras, as assembleias ficam organizadas, e há sempre alguém a responder quando é preciso.</p>
+        <p class="signature">Francis Wachholz
+          <span>Fundador da Gestão Prime</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>O que a Gestão Prime trata pelo seu condomínio</h2>
+        <p>Do dia a dia às assembleias, cada área tem uma resposta direta e sem burocracia desnecessária.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-list">
+          <div class="service-item">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+            </div>
+            <div>
+              <h3>Administração corrente</h3>
+              <p>Convocatórias, atas, correspondência e todo o apoio à realização das assembleias de condóminos.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10h18M6 15h2M11 15h2"/><rect x="3" y="6" width="18" height="13" rx="1.5"/></svg>
+            </div>
+            <div>
+              <h3>Gestão financeira</h3>
+              <p>Cobrança de quotas, pagamento a fornecedores e contas reportadas de forma clara e regular.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0L4 11l1.6 4.4L10 17l8.7-8.7-4-2z"/><path d="M3 21l1.7-5.5"/></svg>
+            </div>
+            <div>
+              <h3>Manutenção e fornecedores</h3>
+              <p>Coordenação de obras, limpeza, jardinagem e reparações, com acompanhamento até à conclusão.</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-list">
+          <div class="service-item">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg>
+            </div>
+            <div>
+              <h3>Seguros do condomínio</h3>
+              <p>Acompanhamento da apólice, participação de sinistros e apoio na resolução com a seguradora.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h9l3 3v13H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
+            </div>
+            <div>
+              <h3>Apoio legal e conformidade</h3>
+              <p>Cumprimento do regulamento do condomínio e da legislação da propriedade horizontal.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6"/></svg>
+            </div>
+            <div>
+              <h3>Atendimento aos condóminos</h3>
+              <p>Um único contacto direto para todas as questões — sem menus de espera nem reencaminhamentos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Como funciona</h2>
+        <p>Três passos, sem letra pequena, até o seu condomínio estar entregue à Gestão Prime.</p>
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <span class="num">1</span>
+          <h3>Fala comigo no WhatsApp</h3>
+          <p>Conte-me em que estado está o condomínio hoje e o que gostava de resolver.</p>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <h3>Vou conhecer o prédio</h3>
+          <p>Reviso contas, regulamento e histórico do condomínio, sem custos nem compromisso.</p>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <h3>Proposta clara e arranque</h3>
+          <p>Sabe exatamente o que está incluído, quanto custa e quando começamos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="area">
+    <div class="wrap">
+      <div>
+        <div class="section-head" style="margin-bottom: 8px;">
+          <h2>Zona de atuação</h2>
+          <p>A gerir condomínios em Miranda do Corvo e disponível para as localidades vizinhas.</p>
+        </div>
+        <ul class="area-list">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Miranda do Corvo
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Lamas
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Vila Nova
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Semide e Rio Vide
+          </li>
+        </ul>
+        <p class="area-note">Também atendemos pedidos de condomínios na Lousã, Vila Nova de Poiares e Coimbra — pergunte por WhatsApp se o seu prédio fica nessa zona.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 480 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama com Miranda do Corvo no centro, as freguesias do concelho num anel próximo, e Lousã, Vila Nova de Poiares e Coimbra num anel exterior, atendidas mediante pedido.">
+          <circle cx="240" cy="230" r="180" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 5"/>
+          <circle cx="240" cy="230" r="95" fill="none" stroke="var(--line)" stroke-width="1"/>
+
+          <line x1="240" y1="230" x2="240" y2="135" stroke="var(--line)" stroke-width="1"/>
+          <line x1="240" y1="230" x2="155" y2="280" stroke="var(--line)" stroke-width="1"/>
+          <line x1="240" y1="230" x2="325" y2="280" stroke="var(--line)" stroke-width="1"/>
+
+          <line x1="240" y1="230" x2="240" y2="55" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 5"/>
+          <line x1="240" y1="230" x2="95" y2="145" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 5"/>
+          <line x1="240" y1="230" x2="400" y2="345" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 5"/>
+
+          <circle cx="240" cy="230" r="10" fill="var(--accent)"/>
+
+          <circle cx="240" cy="135" r="6" fill="var(--forest)"/>
+          <circle cx="155" cy="280" r="6" fill="var(--forest)"/>
+          <circle cx="325" cy="280" r="6" fill="var(--forest)"/>
+
+          <circle cx="240" cy="55" r="6" fill="none" stroke="var(--ink-soft)" stroke-width="1.6"/>
+          <circle cx="95" cy="145" r="6" fill="none" stroke="var(--ink-soft)" stroke-width="1.6"/>
+          <circle cx="400" cy="345" r="6" fill="none" stroke="var(--ink-soft)" stroke-width="1.6"/>
+
+          <text x="240" y="255" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="13" fill="var(--ink)">Miranda do Corvo</text>
+          <text x="240" y="120" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="12" fill="var(--ink-soft)">Vila Nova</text>
+          <text x="155" y="300" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="12" fill="var(--ink-soft)">Lamas</text>
+          <text x="325" y="300" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="12" fill="var(--ink-soft)">Semide e Rio Vide</text>
+          <text x="240" y="38" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="12" fill="var(--ink-soft)">Vila Nova de Poiares</text>
+          <text x="95" y="128" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="12" fill="var(--ink-soft)">Coimbra</text>
+          <text x="400" y="365" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="12" fill="var(--ink-soft)">Lousã</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final" id="contacto">
+    <div class="wrap">
+      <h2>Vamos falar sobre o seu condomínio?</h2>
+      <p>Escreva-me agora no WhatsApp — sem formulários, sem esperas. Respondo eu, pessoalmente.</p>
+      <div class="cta-row">
+        <a class="btn btn-whatsapp btn-large" href="https://wa.me/351915533470?text=Ol%C3%A1%20Francis%2C%20vi%20o%20site%20da%20Gest%C3%A3o%20Prime%20e%20gostava%20de%20saber%20mais%20sobre%20a%20gest%C3%A3o%20do%20meu%20condom%C3%ADnio." target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.4 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.4 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2zm4.6-6.3c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <a class="phone-inline" href="tel:+351915533470">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11 21 3 13 3 4.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.3z"/></svg>
+          915 533 470
+        </a>
+        <a class="phone-inline" href="mailto:administrador@gestaoprime.pt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="M4 6l8 7 8-7"/></svg>
+          administrador@gestaoprime.pt
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="brand-block">
+      <div class="name">Gestão Prime</div>
+      <div class="tag">Gestão de Condomínios</div>
+      <div class="tag">Miranda do Corvo, Portugal</div>
+    </div>
+    <div class="col">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#area">Área de atuação</a>
+    </div>
+    <div class="col">
+      <a href="tel:+351915533470">915 533 470</a>
+      <a href="https://wa.me/351915533470" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:administrador@gestaoprime.pt">administrador@gestaoprime.pt</a>
+      <span>gestaoprime.pt</span>
+    </div>
+  </div>
+  <div class="wrap legal">
+    Gestão Prime — Francis Wachholz. Gestão de condomínios em Miranda do Corvo e concelhos vizinhos.
+  </div>
+</footer>
+
+<a class="float-whatsapp" href="https://wa.me/351915533470?text=Ol%C3%A1%20Francis%2C%20vi%20o%20site%20da%20Gest%C3%A3o%20Prime%20e%20gostava%20de%20saber%20mais%20sobre%20a%20gest%C3%A3o%20do%20meu%20condom%C3%ADnio." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.4 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.4 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2zm4.6-6.3c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', function () {
+    var isOpen = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
